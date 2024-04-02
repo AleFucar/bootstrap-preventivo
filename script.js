@@ -74,10 +74,11 @@ function stampaPrezzo() {
 
     const prezzoFinito = 
     `
-    &euro;${prezzoFinale}
-    <span class="prezzoGrigio"></span>
+    &euro;${prezzoFinale.toFixed(2).charAt(0) + (prezzoFinale.toFixed(2).charAt(1)) + (prezzoFinale.toFixed(2).charAt(2))}
+    <span class="prezzoGrigio">${prezzoFinale.toFixed(2).charAt(3).replace(".", ',') + (prezzoFinale.toFixed(2).charAt(4)) + prezzoFinale.toFixed(2).charAt(5)}</span>
     `
     prezzoStampaElement.innerHTML = prezzoFinito
+    console.log(prezzoFinale)
 }
 
 
