@@ -13,16 +13,21 @@ const form = document.getElementById('invioForm')
 form.addEventListener('submit', invioForm)
 
 
-
     
 function invioForm(e) {
 
+
+
     e.preventDefault()
 
-    
+    if (validateForm() === false) {
+        return
+    } else{
+    calcolaPrezzo()
+    }
     //console.log("Pulsante cliccato!")
 
-    calcolaPrezzo()
+
 
 
 }
@@ -34,8 +39,8 @@ const codiciSconto = ['YHDNU32', 'JANJC63', 'PWKCN25', 'SJDPO96', 'POCIE24']
 function calcolaPrezzo() {
      
     if (select.value == 0) {
-        console.log("non hai selezionato il lavoro")
-        return false
+        //console.log("non hai selezionato il lavoro")
+        return
     } else if (select.value == 1) {
         prezzoFinale = oreDiLavoro * 20.50
     } else if (select.value == 2) {
@@ -70,4 +75,69 @@ function stampaPrezzo() {
     <span class="prezzoGrigio"></span>
     `
     prezzoStampaElement.innerHTML = prezzoFinito
+}
+
+
+
+function validateForm() {
+
+    const nome = document.getElementById('nomeForm').value
+    const cognome = document.getElementById('cognomeForm').value
+    const email = document.getElementById('emailForm').value
+
+    const validazioneNome = document.getElementById('nomeForm')
+    const validazioneCognome = document.getElementById('cognomeForm')
+    const validazioneEmail = document.getElementById('emailForm')
+
+    
+
+    if (nome === '') {
+
+        validazioneNome.className = 'form-control is-invalid' 
+        return false
+        //console.log('non valido')
+        
+    } else {
+
+        validazioneNome.className = 'form-control is-valid'
+        //console.log('validissimo')
+    }
+
+        if (cognome === '') {
+
+        validazioneCognome.className = 'form-control is-invalid' 
+        return false
+
+        //console.log('non valido')
+        
+    } else {
+
+        validazioneCognome.className = 'form-control is-valid'
+        //console.log('validissimo')
+    }
+
+        if (email === '') {
+
+        validazioneEmail.className = 'form-control is-invalid' 
+        return false
+        //console.log('non valido')
+        
+    } else {
+
+        validazioneEmail.className = 'form-control is-valid'
+        //console.log('validissimo')
+    }
+
+
+    if (select.value == 0) {
+        
+        select.className = 'form-select mb-3 is-invalid'
+        //console.log('non valido')
+        return false
+
+    } else {
+        select.className = 'form-select mb-3 is-valid'
+    }
+
+
 }
