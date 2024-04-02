@@ -1,19 +1,18 @@
 
-
+//inizializzo variabile prezzo a zero
 let prezzoFinale = 0
+// dichiariamo variabile delle ore di lavoro
 const oreDiLavoro = 10
-const backEnd = document.getElementById('bkDev')
-const frontEnd = document.getElementById('ftDev')
-const analisiProgettuale = document.getElementById('pAnalis')
+//diciariamo la  variabile select (i lavori del dropdown)
 const select = document.getElementById('selectObj')
 
-
+//dichiariamo la variabile 'form' che serve per inviare i dati
 const form = document.getElementById('invioForm')
 
+//inizializziamo un ascolto di evento submit che fa partire la funzione (invioForm)
 form.addEventListener('submit', invioForm)
 
-
-    
+//funzione che disattiva il regolare funzionamento del form (ricaricare la pagina) e stampa il prezzo
 function invioForm(e) {
 
     e.preventDefault()
@@ -27,14 +26,16 @@ function invioForm(e) {
 
 }
 
-
+//dichiariamo costante che prende l'imput dalla page html "codice promozionale"
 const codiceElement = document.getElementById('codiceForm')
+
+//creiamo array di stringhe dei codici sconto
 const codiciSconto = ['YHDNU32', 'JANJC63', 'PWKCN25', 'SJDPO96', 'POCIE24']
 
+//creiamo una funzione che calcola il prezzo e l'eventuale sconto
 function calcolaPrezzo() {
      
     if (select.value == 0) {
-        //console.log("non hai selezionato il lavoro")
         return
     } else if (select.value == 1) {
         prezzoFinale = oreDiLavoro * 20.50
@@ -54,7 +55,7 @@ function calcolaPrezzo() {
         stampaPrezzo()
         codiceElement.className = ('form-control is-invalid')
 
-
+        //SO CHE SI FA DA HTML CON BOOTSTRAP, MA VOLEVO FARNE UNO IN BACK END
         const invalidCode = document.getElementById('invalidCode')
         const invalidHTML =
         `
@@ -67,7 +68,7 @@ function calcolaPrezzo() {
 }
 
 
-
+// creiamo una funzione che stampa a video il prezzo finale con le prime tre cifre in nero e i decimali in grigio
 function stampaPrezzo() {
 
     const prezzoStampaElement = document.getElementById('prezzoFinale')
@@ -78,11 +79,10 @@ function stampaPrezzo() {
     <span class="prezzoGrigio">${prezzoFinale.toFixed(2).charAt(3).replace(".", ',') + (prezzoFinale.toFixed(2).charAt(4)) + prezzoFinale.toFixed(2).charAt(5)}</span>
     `
     prezzoStampaElement.innerHTML = prezzoFinito
-    console.log(prezzoFinale)
 }
 
 
-
+//creiamo una funzione che valida i dati e eventualmente modifica la classe di ogni elemento del form
 function validateForm() {
 
     const nome = document.getElementById('nomeForm').value
