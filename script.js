@@ -16,8 +16,6 @@ form.addEventListener('submit', invioForm)
     
 function invioForm(e) {
 
-
-
     e.preventDefault()
 
     if (validateForm() === false) {
@@ -27,13 +25,10 @@ function invioForm(e) {
     }
     //console.log("Pulsante cliccato!")
 
-
-
-
 }
 
 
-const codiceElement = document.getElementById('codiceForm') 
+const codiceElement = document.getElementById('codiceForm')
 const codiciSconto = ['YHDNU32', 'JANJC63', 'PWKCN25', 'SJDPO96', 'POCIE24']
 
 function calcolaPrezzo() {
@@ -53,12 +48,20 @@ function calcolaPrezzo() {
         const sconto = (prezzoFinale * 25)/100
         const prezzoScontato = prezzoFinale - sconto
         prezzoFinale = prezzoScontato
-        console.log('Prezzo scontato: ' + prezzoScontato)
+        codiceElement.className = ('form-control is-valid')
         stampaPrezzo()
     } else {
         stampaPrezzo()
-        console.log(prezzoFinale)
-        console.log('Codice Promozionale non inserito o errato')
+        codiceElement.className = ('form-control is-invalid')
+
+
+        const invalidCode = document.getElementById('invalidCode')
+        const invalidHTML =
+        `
+        ${'Codice non inserito o non valido. Il prezzo sarà calcolato senza sconto'}
+        `
+
+        invalidCode.innerHTML = invalidHTML
     }
 
 }
@@ -138,6 +141,4 @@ function validateForm() {
     } else {
         select.className = 'form-select mb-3 is-valid'
     }
-
-
 }
