@@ -51,6 +51,21 @@ function calcolaPrezzo() {
         prezzoFinale = prezzoScontato
         codiceElement.className = ('form-control is-valid')
         stampaPrezzo()
+    } else if (codiceElement.value == '') {
+        stampaPrezzo()
+        
+        const nessunCodice = document.getElementById('noCode')
+        //console.log('campo vuoto')
+
+         nessunCodice.className = ('alert alert-secondary mt-2')   
+
+        const stampaNoCode = 
+         `   
+        Nessun codice inserito, il prezzo è stato calcolato senza sconto.
+         `
+
+         nessunCodice.innerHTML = stampaNoCode
+
     } else {
         stampaPrezzo()
         codiceElement.className = ('form-control is-invalid')
@@ -59,7 +74,7 @@ function calcolaPrezzo() {
         const invalidCode = document.getElementById('invalidCode')
         const invalidHTML =
         `
-        ${'Codice non inserito o non valido. Il prezzo sarà calcolato senza sconto'}
+        ${'Codice non valido. Il prezzo sarà calcolato senza sconto'}
         `
 
         invalidCode.innerHTML = invalidHTML
