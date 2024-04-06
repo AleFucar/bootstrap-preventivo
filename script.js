@@ -19,8 +19,8 @@ function invioForm(e) {
 
     if (validateForm() === false) {
         return
-    } else{
-    calcolaPrezzo()
+    } else {
+        calcolaPrezzo()
     }
     //console.log("Pulsante cliccato!")
 
@@ -34,7 +34,7 @@ const codiciSconto = ['YHDNU32', 'JANJC63', 'PWKCN25', 'SJDPO96', 'POCIE24']
 
 //creiamo una funzione che calcola il prezzo e l'eventuale sconto
 function calcolaPrezzo() {
-     
+
     if (select.value == 0) {
         return
     } else if (select.value == 1) {
@@ -46,25 +46,25 @@ function calcolaPrezzo() {
     }
 
     if (codiciSconto.includes(codiceElement.value)) {
-        const sconto = (prezzoFinale * 25)/100
+        const sconto = (prezzoFinale * 25) / 100
         const prezzoScontato = prezzoFinale - sconto
         prezzoFinale = prezzoScontato
         codiceElement.className = ('form-control is-valid')
         stampaPrezzo()
     } else if (codiceElement.value == '') {
         stampaPrezzo()
-        
+
         const nessunCodice = document.getElementById('noCode')
         //console.log('campo vuoto')
 
-         nessunCodice.className = ('alert alert-secondary mt-2')   
+        nessunCodice.className = ('alert alert-secondary mt-2')
 
-        const stampaNoCode = 
-         `   
+        const stampaNoCode =
+            `   
         Nessun codice inserito, il prezzo è stato calcolato senza sconto.
          `
 
-         nessunCodice.innerHTML = stampaNoCode
+        nessunCodice.innerHTML = stampaNoCode
 
     } else {
         stampaPrezzo()
@@ -73,7 +73,7 @@ function calcolaPrezzo() {
         //SO CHE SI FA DA HTML CON BOOTSTRAP, MA VOLEVO FARNE UNO IN BACK END
         const invalidCode = document.getElementById('invalidCode')
         const invalidHTML =
-        `
+            `
         ${'Codice non valido. Il prezzo sarà calcolato senza sconto'}
         `
 
@@ -88,8 +88,8 @@ function stampaPrezzo() {
 
     const prezzoStampaElement = document.getElementById('prezzoFinale')
 
-    const prezzoFinito = 
-    `
+    const prezzoFinito =
+        `
     &euro;${prezzoFinale.toFixed(2).charAt(0) + (prezzoFinale.toFixed(2).charAt(1)) + (prezzoFinale.toFixed(2).charAt(2))}
     <span class="prezzoGrigio">${prezzoFinale.toFixed(2).charAt(3).replace(".", ',') + (prezzoFinale.toFixed(2).charAt(4)) + prezzoFinale.toFixed(2).charAt(5)}</span>
     `
@@ -108,39 +108,39 @@ function validateForm() {
     const validazioneCognome = document.getElementById('cognomeForm')
     const validazioneEmail = document.getElementById('emailForm')
 
-    
+
 
     if (nome === '') {
 
-        validazioneNome.className = 'form-control is-invalid' 
+        validazioneNome.className = 'form-control is-invalid'
         return false
         //console.log('non valido')
-        
+
     } else {
 
         validazioneNome.className = 'form-control is-valid'
         //console.log('validissimo')
     }
 
-        if (cognome === '') {
+    if (cognome === '') {
 
-        validazioneCognome.className = 'form-control is-invalid' 
+        validazioneCognome.className = 'form-control is-invalid'
         return false
 
         //console.log('non valido')
-        
+
     } else {
 
         validazioneCognome.className = 'form-control is-valid'
         //console.log('validissimo')
     }
 
-        if (email === '') {
+    if (email === '') {
 
-        validazioneEmail.className = 'form-control is-invalid' 
+        validazioneEmail.className = 'form-control is-invalid'
         return false
         //console.log('non valido')
-        
+
     } else {
 
         validazioneEmail.className = 'form-control is-valid'
@@ -149,7 +149,7 @@ function validateForm() {
 
 
     if (select.value == 0) {
-        
+
         select.className = 'form-select mb-3 is-invalid'
         //console.log('non valido')
         return false
